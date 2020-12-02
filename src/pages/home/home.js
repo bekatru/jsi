@@ -1,5 +1,6 @@
 import React from 'react';
 import './home.css';
+import { Link } from 'react-router-dom';
 
 // images
 import cover from './img/main.jpg'
@@ -50,15 +51,19 @@ function Home() {
 			<div className="pad-x">
 				<h3>how it works?</h3>
 				<div className="how">
-					<div className="pad-x">
-						<img src={lira} alt="" />
-						<p>create a new event</p>
-					</div>
+					<Link to="/newjam">
+						<div className="pad-x">
+							<img src={lira} alt="" />
+							<p>create a new event</p>
+						</div>
+					</Link>
 					<p className="or">or</p>
-					<div className="pad-x">
-						<img src={calendar} alt="" />
-						<p>join one of the <br/> upcoming events</p>
-					</div>
+					<Link to="jams">
+						<div className="pad-x">
+							<img src={calendar} alt="" />
+							<p>join one of the <br/> upcoming events</p>
+						</div>
+					</Link>
 				</div>
 			</div>
 			<img className="black" src={black} alt="" />
