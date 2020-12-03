@@ -1,54 +1,52 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import Jam from './jam.js'
 
 import './jams.css'
 
-function Jams() {
-	const jamData = [
-		{
-		title: "Blues Jam",
-		date: "December 2",
-		address: 'Besiktas',
-		name: "Dasha",
-		description:`Lorem ipsum dolor sit amet, consectetur adipiscing 
-					elit. Aenean vel lacus eget est rutrum sollicitudin. 
-					Donec justo lorem, porttitor nec libero a, consequat 
-					tempus nunc.`
-		},
-		{
-		title: "Rock Jam",
-		date: "January 1",
-		address: 'Moda',
-		name: "Beka",
-		description:`Lorem ipsum dolor sit amet, consectetur adipiscing 
-					elit. Aenean vel lacus eget est rutrum sollicitudin. 
-					Donec justo lorem, porttitor nec libero a, consequat 
-					tempus nunc.`
+class Jams extends React.Component {
+	constructor() {
+		super();
+		this.state = {
+			loading: true,
+			jams: null
 		}
-	]
-	return (
-		<div className="container">
-			<h1>JAMS</h1>
-			<Link to="/newjam">
-				<div className="new">+</div>
-			</Link>
-			<div>
-				{jamData.map((item)=> {
-					return (
-						<Jam 
-							name={item.name}
-							title={item.title}
-							date={item.date}
-							address={item.address}
-							description={item.description}
-						/>
-					)
-				})}
+	}
+
+	async componentDidMount() {
+		const url = 'http://localhost:3001/jams'
+		const response = await fetch(url)
+		const data = await response.json()
+		this.setState({jams: data, loading: false})
+	}
+
+	render() {
+		const jamData = this.state.jams
+		return (
+			<div className="container">
+				<h1>JAMS</h1>
+				<Link to="/newjam">
+					<div className="new">+</div>
+				</Link>
+				{this.state.loading || !this.state.jams ? <div>loading...</div> :
+					<div>
+						{jamData.map((item, index)=> {
+							return (
+								<Jam 
+									key={index}
+									name={item.name}
+									title={item.title}
+									date={item.date}
+									address={item.address}
+									description={item.description}
+								/>
+							)
+						})}
+					</div>
+				}
 			</div>
-		</div>
-	)
+		)
+	}
 }
 
 export default Jams;
