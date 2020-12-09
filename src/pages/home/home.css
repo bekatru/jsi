@@ -2,11 +2,6 @@
 	overflow: hidden;
 }
 
-.container {
-	max-width: 768px;
-	margin: 0 auto;
-}
-
 * {
 	font-family: 'Montserrat', sans-serif;
 	text-align: center;

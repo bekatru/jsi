@@ -1,86 +1,23 @@
-import React from 'react';
-import './home.css';
-import { Link } from 'react-router-dom';
+import React, { Component } from "react";
+import Auth from "../auth/auth.js";
 
-// images
-import cover from './img/main.jpg'
-import yellow from './img/yellowdiv.png';
-import black from './img/blackdiv.png';
-import bass from './img/contrabass.png';
-import lira from './img/lira.png';
-import calendar from './img/calendar.png';
+export default class Login extends Component {
+  constructor(props) {
+    super(props);
 
-// icons
-import facebook from '../../icons/facebook.png';
-import instagram from '../../icons/instagram.png';
-import mail from '../../icons/mail.png';
-import whatsapp from '../../icons/whatsapp.png';
+    this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
+  }
 
-function Home() {
-	return (
-		<div className="container">
-			<header>
-				<img className="cover" src={cover} alt="" />
-				<div className="logo">
-					<h1>JAM SESSIONS</h1>
-					<h2>ISTANBUL</h2>
-				</div>
-			</header>
-			<div className="pad-x">
-				<h3>about</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-				cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-				proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-			</div>
-			<div className="block">
-				<img className="yellow" src={yellow} alt="" />
-			</div>
-			<div className="dark pad-x">
-				<h3>mission</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-				tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-				quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-				consequat.</p>
-				<img className="bass" src={bass} alt="" />
-			</div>
+  handleSuccessfulAuth(data) {
+    this.props.handleLogin(data);
+    this.props.history.push("/dashboard");
+  }
 
-			<img className="blacktop" src={black} alt="" />
-			<div className="pad-x">
-				<h3>how it works?</h3>
-				<div className="how">
-					<Link to="/newjam">
-						<div className="pad-x">
-							<img src={lira} alt="" />
-							<p>create a new event</p>
-						</div>
-					</Link>
-					<p className="or">or</p>
-					<Link to="jams">
-						<div className="pad-x">
-							<img src={calendar} alt="" />
-							<p>join one of the <br/> upcoming events</p>
-						</div>
-					</Link>
-				</div>
-			</div>
-			<img className="black" src={black} alt="" />
-			<footer>
-				<div className="contact">
-					<img src={facebook} alt="" />
-					<img src={instagram} alt="" />
-					<img src={mail} alt="" />
-					<img src={whatsapp} alt="" />
-				</div>
-				<div>
-					<h1>JAM SESSIONS</h1>
-					<h2>ISTANBUL</h2>
-				</div>
-			</footer>
-		</div>
-	);
+  render() {
+    return (
+      <div className="container">
+        <Auth handleSuccessfulAuth={this.handleSuccessfulAuth} />
+      </div>
+    );
+  }
 }
-
-export default Home;
