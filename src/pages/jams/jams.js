@@ -1,7 +1,5 @@
 import React from "react";
-import JamList from "./jamlist";
-
-import "./jams.css";
+import JamList from "./JamList";
 
 class Jams extends React.Component {
   constructor(props) {
@@ -15,7 +13,7 @@ class Jams extends React.Component {
     return (
       <div className="container">
         <h1>JAMS</h1>
-        <JamList loggedIn={this.props.loggedIn} />
+        <JamList route="jams/" id="" />
       </div>
     );
   }

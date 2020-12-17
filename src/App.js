@@ -1,4 +1,3 @@
-// TEST SSH
 // Import React
 import React, { Component } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -6,12 +5,17 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "./css/form.css";
 import "./css/layout.css";
+import "./css/profile.css";
+import "./css/jams.css";
+import "./css/nav.css";
 // Import Components
 import Nav from "./pages/nav/nav";
-import Dashboard from "./pages/dashboard/dashboard.js";
+import Dashboard from "./pages/dashboard/Dashboard";
 import Jams from "./pages/jams/jams";
-import JamForm from "./pages/newjam/jamform";
-import Login from "./pages/home/home.js";
+import JamForm from "./pages/forms/JamForm";
+import Auth from "./pages/auth/auth.js";
+import ProfileForm from "./pages/forms/profileform";
+import PublicProfile from "./pages/profile/PublicProfile";
 
 class App extends Component {
   constructor() {
@@ -23,12 +27,17 @@ class App extends Component {
 
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleSession = this.handleSession.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.handleSession();
+  }
+
+  handleSession() {
     const token = localStorage.getItem("jwt");
     if (token) {
-      await fetch("http://localhost:3001/user/data", {
+      fetch("http://localhost:3001/user/data", {
         method: "get",
         headers: { token: token },
       })
@@ -62,17 +71,15 @@ class App extends Component {
             loggedIn={this.state.loggedIn}
           />
           <Switch>
+            {/* {AUTH} */}
             <Route
               exact
-              path={"/login"}
+              path={"/auth"}
               render={(props) => (
-                <Login
-                  {...props}
-                  handleLogin={this.handleLogin}
-                  loggedIn={this.state.loggedIn}
-                />
+                <Auth {...props} handleLogin={this.handleLogin} />
               )}
             ></Route>
+            {/* {DASH} */}
             <Route
               path={"/dashboard"}
               render={(props) => (
@@ -83,16 +90,34 @@ class App extends Component {
                 />
               )}
             ></Route>
+            {/* {JAMS} */}
             <Route
+              exact
               path={"/jams"}
               render={(props) => (
                 <Jams {...props} loggedIn={this.state.loggedIn} />
               )}
             ></Route>
+            {/* {CREATE JAM} */}
             <Route
-              path="/newjam"
+              exact
+              path="/jams/create"
               render={(props) => <JamForm {...props} user={this.state.user} />}
             ></Route>
+            {/* {EDIT PROFILE} */}
+            <Route
+              exact
+              path="/profile/edit"
+              render={(props) => (
+                <ProfileForm
+                  {...props}
+                  updateUser={this.handleLogin}
+                  user={this.state.user}
+                />
+              )}
+            ></Route>
+            {/*PROFILE*/}
+            <Route path="/profile" component={PublicProfile} />
           </Switch>
         </Router>
       </div>
