@@ -6,7 +6,9 @@ const ProfilePicture = (props) => {
   const image = !input
     ? mozart
     : "data:image/png;base64," +
-      btoa(String.fromCharCode(...new Uint8Array(input.data)));
+      (props.fixit
+        ? input
+        : btoa(String.fromCharCode(...new Uint8Array(input.data))));
   return <img src={image} width={diameter} heigth={diameter} alt="avatar" />;
 };
 

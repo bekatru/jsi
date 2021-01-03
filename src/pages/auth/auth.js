@@ -1,7 +1,7 @@
 import React from "react";
 import SignIn from "../forms/AuthForm_login";
 import SignUp from "../forms/AuthForm_register";
-import { PostRequest } from "../../js/fetch";
+import { PostRequest } from "../../utils/fetch";
 
 const Auth = (props) => {
   const handleAuth = (route, data) => {
@@ -9,6 +9,7 @@ const Auth = (props) => {
       if (response.user) {
         const { user, token } = response;
         localStorage.setItem("jwt", token);
+        localStorage.setItem("id", user._id);
         props.handleLogin(user);
         props.history.push("/dashboard");
       } else {

@@ -1,6 +1,6 @@
 // Components
 import React, { useEffect, useState } from "react";
-import { LoadData } from "../../js/fetch";
+import { LoadData } from "../../utils/fetch";
 import ProfilePicture from "./ProfilePicture";
 
 // Icons

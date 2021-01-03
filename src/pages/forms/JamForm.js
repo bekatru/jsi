@@ -1,5 +1,5 @@
 import React from "react";
-import { PostRequest, PatchRequest, DeleteRequest } from "../../js/fetch";
+import { PostRequest, PatchRequest, DeleteRequest } from "../../utils/fetch";
 import { useForm } from "react-hook-form";
 
 const JamForm = (props) => {

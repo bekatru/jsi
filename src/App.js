@@ -9,12 +9,12 @@ import "./css/profile.css";
 import "./css/jams.css";
 import "./css/nav.css";
 // Import Components
-import Nav from "./pages/nav/nav";
+import Nav from "./pages/general/Nav";
 import Dashboard from "./pages/dashboard/Dashboard";
-import Jams from "./pages/jams/jams";
+import Jams from "./pages/jams/Jams";
 import JamForm from "./pages/forms/JamForm";
-import Auth from "./pages/auth/auth.js";
-import ProfileForm from "./pages/forms/profileform";
+import Auth from "./pages/auth/Auth.js";
+import ProfileForm from "./pages/forms/ProfileForm";
 import PublicProfile from "./pages/profile/PublicProfile";
 
 class App extends Component {

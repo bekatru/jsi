@@ -14,10 +14,10 @@ const Nav = (props) => {
           <Link to="/about">About</Link>
           <Link to="/jams">Jams</Link>
         </ul>
-        {this.props.loggedIn ? (
+        {props.loggedIn ? (
           <ul className="nav-links">
             <Link to="/dashboard">Dashboard</Link>
-            <Link onClick={this.props.handleLogout} to="/">
+            <Link onClick={props.handleLogout} to="/">
               Sign Out
             </Link>
           </ul>

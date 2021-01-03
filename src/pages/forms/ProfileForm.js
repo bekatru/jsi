@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { PatchRequest } from "../../js/fetch";
+import { PatchRequest } from "../../utils/fetch";
 import AvatarEditor from "./AvatarEditor";
 
 const ProfileForm = (props) => {
